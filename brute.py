@@ -6,7 +6,8 @@ from time import time, sleep
 
 from pystyle import *
 from getpass import getpass as hinput
-            
+
+
 
 class Brutalize:
 
@@ -28,10 +29,9 @@ class Brutalize:
             Thread(target=self.send).start()
         Thread(target=self.info).start()
     
-    
-    def info(self):
+def info(self):
         interval = 0.05
-        now = time.time() * 1000  # Current time in milliseconds
+        now = time.time() * 1000 
 
         size = 0
         self.total = 0
@@ -39,6 +39,7 @@ class Brutalize:
         bytediff = 8
         mb = 1000000
         gb = 1000000000
+        
 
         while self.on:
             sleep(interval)
@@ -49,17 +50,15 @@ class Brutalize:
                 self.total += self.sent * bytediff / gb * interval
                 print(stage(f"{fluo}{round(size)} {white}Mb/s {purple}-{white} Total: {fluo}{round(self.total, 1)} {white}Gb. {' '*20}"), end='\r')
 
-            now2 = time.time() * 1000  # Current time in milliseconds
-       
-
-            if now + 1000 >= now2:  # Increase second after 1000 milliseconds (1 second)
+            now2 = time()
+        
+            if now + 1 >= now2:
                 continue
-
+            
             size = round(self.sent * bytediff / mb)
             self.sent = 0
 
-            now += 1000  # Increase current time by 1000 milliseconds (1 second)
-
+            now += 1
 
     def stop(self):
         self.on = False
