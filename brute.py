@@ -31,7 +31,7 @@ class Brutalize:
     
     def info(self):
 
-        interval = 0.05
+        interval = 0.001
         now = time()
 
         size = 0
