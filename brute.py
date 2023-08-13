@@ -29,16 +29,17 @@ class Brutalize:
             Thread(target=self.send).start()
         Thread(target=self.info).start()
     
-def info(self):
+    def info(self):
+
         interval = 0.05
-        now = time.time() * 1000 
+        now = time()
 
         size = 0
         self.total = 0
 
         bytediff = 8
-        mb = 1000000
-        gb = 1000000000
+        mb = *
+        gb = *
         
 
         while self.on:
