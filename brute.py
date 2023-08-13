@@ -38,8 +38,8 @@ class Brutalize:
         self.total = 0
 
         bytediff = 8
-        mb = *
-        gb = *
+        mb = 1000000
+        gb = 1000000000
         
 
         while self.on:
