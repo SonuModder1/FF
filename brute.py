@@ -9,6 +9,7 @@ from getpass import getpass as hinput
 
 
 
+
 class Brutalize:
 
     def __init__(self, ip, port, force, threads):
@@ -31,7 +32,7 @@ class Brutalize:
     
     def info(self):
 
-        interval = 0.001
+        interval = 0.05
         now = time()
 
         size = 0
@@ -53,13 +54,13 @@ class Brutalize:
 
             now2 = time()
         
-            if now + 1 >= now2:
+            if now + 100 >= now2:
                 continue
             
             size = round(self.sent * bytediff / mb)
             self.sent = 0
 
-            now += 1
+            now += 1000
 
     def stop(self):
         self.on = False
